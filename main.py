@@ -15,7 +15,6 @@ def main():
 
     while True:
         screen.fill("black")
-        player.update(dt)
         player.draw(screen)
         pygame.display.flip()
         for event in pygame.event.get():
@@ -23,6 +22,7 @@ def main():
                 return
         delta = clock.tick(60)
         dt = delta/1000
+        player.update(dt)
 
 if __name__ == "__main__":
     main()

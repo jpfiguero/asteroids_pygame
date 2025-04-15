@@ -5,6 +5,7 @@ from constants import *
 from player import *
 from asteroid import *
 from asteroidfield import *
+from shot import *
 
 def main():
     print("Starting Asteroids!")
@@ -16,17 +17,19 @@ def main():
 
     updatable = pygame.sprite.Group()
     drawable = pygame.sprite.Group()
-    Player.containers = (updatable, drawable)
-
     asteroids = pygame.sprite.Group()
+    shots = pygame.sprite.Group()
+
+    Player.containers = (updatable, drawable)
     Asteroid.containers = (asteroids, updatable, drawable)
+    Shot.containers = (shots, updatable, drawable)
 
     # Set the static containers field of the AsteroidField class to only the updatable group
     # (it's not drawable, and it's not an asteroid itself).
     # Create a new AsteroidField object in the initialization code.
     AsteroidField.containers = updatable
-
     asteroid_field = AsteroidField()
+
     player = Player(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2)
 
     dt = 0
@@ -52,7 +55,7 @@ def main():
 
         delta = clock.tick(60)
         dt = delta/1000
-        # player.update(dt)
+        player.update(dt)
 
 
 
